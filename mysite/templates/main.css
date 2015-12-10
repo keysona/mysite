@@ -1,0 +1,239 @@
+
+@font-face {
+   font-family: "MontereyFLF";
+   src: url('http://7xozg6.com1.z0.glb.clouddn.com/MontereyFLF.ttf');
+   font-weight:normal;
+   font-style: bold;
+ }
+
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#e2e2e2;
+    font-family:"Microsoft YaHei",sans-serif
+}
+
+
+.menu{
+    display: table;
+}
+.menu li{
+    position: relative;
+    display: inline-block;
+    border:0px none;
+}
+
+.menu li li{
+    display: block;
+    height:auto;
+}
+
+.menu li a{
+    color:white;
+    text-decoration: none;
+    padding:12px 12px;
+    /*margin:0 auto;*/
+}
+
+.sub-menu{
+    height:auto;
+    display: none;
+    float: left;
+    position: absolute;
+    top: 40px;
+    z-index: 999;
+    /*background: #fff;*/
+    min-width:103px;
+    color:black;
+}
+
+.sub-menu li a{
+    display: inline-block;
+    width:85%;
+    padding:0;
+    padding-left:15%;
+    margin:0 auto;
+}
+
+.menu li a:hover,.sub-menu a:hover{
+    background-color: rgba(0,0,0,0.4);
+    transition:background-color 1s;
+}
+
+.menu li:hover .sub-menu{
+    display: block;
+}
+
+.menu li a img{
+    vertical-align: text-bottom;
+}
+
+
+.navbar{
+    width:100%;
+    height:40px;
+    line-height: 40px;
+    position: fixed;
+    top:0px;
+    left:0px;
+    z-index: 999;
+}
+
+.navbar .container{
+    width:80%;
+}
+
+.container{
+    max-width:80%;
+    margin:0px auto;
+    background: #0f0;
+}
+
+.navbar-left{
+    float:left;
+    /*overflow: hidden;*/
+}
+
+.navbar-right{
+    float:right;
+    /*overflow: hidden;*/
+}
+
+.header-home{
+    width:100%;
+    height:600px;
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:70% 70%;
+    display: table;
+}
+
+.content{
+    display:table-cell;
+    vertical-align:middle;
+}
+.key-icon{
+    border-radius:100px;
+}
+
+.key-div{
+    font-family:'FontName', Simsun, Arial;
+    font-size:7vw;
+    color:white;
+    opacity: 0.6;
+}
+
+.main-container{
+    width:80%;
+    margin-top: 5%;
+    padding-left: 10%;
+    padding-right:10%;
+    /*background: #111;*/
+}
+
+.article-list-container{
+    width:65%;
+    float:left;
+    /*background: #fff;*/
+}
+
+aside{
+    width:25%;
+    margin-left:7%;
+    display: inline-block;
+}
+
+.date{
+    position: absolute;
+    top:-30px;
+    left:-35px;
+    background:#92c0ef;
+    border-radius:100px;
+    width:70px;
+    height:70px;
+    display: block;
+    text-align: center;
+}
+.month{
+    font-family: "Avenir Next",Helvetica,Arial,"Lantinghei SC","Microsoft YaHei",sans-serif;
+    font-size: 15px;
+    padding-top: 12px;
+    display: block;
+    color:white;
+/*                font-weight: bold;*/
+    line-height: 1;
+}
+.day{
+    font-family: "Avenir Next",Helvetica,Arial,"Lantinghei SC","Microsoft YaHei",sans-serif;
+    display: block;
+    color:white;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-top: 5px;
+}
+.article{
+    position: relative;
+    width:100%;
+    /*margin:5% 5%;*/
+    margin-bottom: 5%;
+    margin-right: 5%;
+    height:600px;
+    background: #ffffff;
+    border-radius:10px;
+    box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    padding:3%;
+}
+
+.article-header{
+    width:100%;
+    text-align: center;
+    /*background: #000;*/
+}
+
+.article-header h1{
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.article-message img{
+    vertical-align: -2px;
+}
+
+.article-label{
+    position:relative ;
+    left:-35px;
+    display: block;
+    width:20%;
+    margin-bottom: 30px;
+}
+
+.article-label:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-top: 0 solid transparent;
+    border-right-width: 1em;
+    border-right-color: inherit;
+    border-right-style: solid;
+    border-bottom: 1em solid transparent;
+    border-left: 0 solid transparent;
+    width: 0;
+    height: 0;
+}
+
+.article-label .label-rectangle{
+    background:#92c0ef;
+    display: block;
+    border-radius: 0px 5px 5px 0px;
+    padding-left: 10px;
+    padding-right:10px;
+    padding-top:5px;
+    padding-bottom: 5px;
+    color:white;
+}

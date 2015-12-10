@@ -1,0 +1,56 @@
+{% load myfilter %}
+<div class="main-container">
+        <div class="article-list-container">
+            {% for article in articles_list %}
+                <div class="article">
+                    <span class="date">
+                        <span class="month">{{article.pub_datetime.month}}月</span>
+                        <span class="day">{{article.pub_datetime.day}}</span>
+                    </span>
+                        <div class="article-header">
+                                <h2><a href="/blog/article/{{article.title}}">{{ article.title }}</a></h2>
+                            <div class="article-message">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/time.png"> 发表于 {{article.pub_datetime | custom_date}}•
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/eye.png">
+                                 {{article.hit_count}}次观看•
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/chat.png" > 11条评论
+                            </div>
+                        </div>
+                        {% for tag in article.tags.all %}
+                        <div class="article-label">
+                            <div class="label-rectangle" style="text-align: right;">
+                                <a href="/blog/tags/{{tag}}"><span>
+                                    {{tag}}
+                                </span>
+                                </a>
+                            </div>
+                            <!-- <br /> -->
+                        </div>
+                        {% endfor %}
+                        <div class="article-content">
+                            <p>
+                                <!-- {{ article.content | custom_markdown | cut:"50" }} -->
+                                {{ article.content | custom_markdown | truncatewords_html:100 }}
+
+                            </p>
+                            <div class="read-more">
+                                <span><a href="/blog/article/{{article.title}}">阅读全文 >> </a></span>
+                            </div>
+                        </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% include 'aside.html' %}
+        <div class="clear"></div>
+        {% if articles_list.object_list and articles_list.paginator.num_pages > 1 %}
+            <div class="pager">
+                {% if articles_list.has_previous %}
+                    <span id="prev-page"><a href="?page={{articles_list.previous_page_number}}"></a></span>
+                {% endif %}
+                {% if articles_list.has_next %}
+                    <span id="next-page"><a href="?page={{articles_list.next_page_number}}"></a></span>
+                {% endif %}
+                <div class="clear"></div>
+            </div>
+        {% endif %}
+    </div>
