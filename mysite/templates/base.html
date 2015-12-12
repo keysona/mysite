@@ -1,8 +1,627 @@
-{% include 'head.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=700, height=device-height, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" itemprop="description" content="欢迎来到我的博客！我是Keysona，一名喜欢折腾技术，热爱自由的在校大学生">
+    <meta name="keywords" itemprop="keywords" content="Keysona,博客,blog,python,opencv,ubuntu">
+
+    <title>{% block title %}{% endblock %} </title>
+
+    <link rel="stylesheet" type="text/css" href="http://7xozg6.com1.z0.glb.clouddn.com/code_highlightfruity.css">
+    <!-- <link rel="stylesheet" type="text/css" href="http://7xozg6.com1.z0.glb.clouddn.com/code_highlightmonokai.css"> -->
+    <style type="text/css">
+        @font-face {
+           font-family: "MontereyFLF";
+           src: url('http://7xozg6.com1.z0.glb.clouddn.com/MontereyFLF.ttf');
+           font-weight:normal;
+           font-style: bold;
+         }
+        body{
+            margin:0;
+            padding:0;
+            background:#e2e2e2;
+            font-family:"Microsoft YaHei",sans-serif;
+        }
+        a{
+            text-decoration: none;
+            color:black;
+            outline:none;
+        }
+        .menu{
+            display: table;
+            margin:0;
+            padding:0;
+        }
+        .menu li{
+            position: relative;
+            display: inline-block;
+            display: table-cell;
+            border:0px none;
+        }
+        .menu li li{
+            display: block;
+            height:auto;
+        }
+        .menu li a{
+            color:white;
+            text-decoration: none;
+            padding:12px 12px;
+        }
+        .sub-menu{
+            height:auto;
+            display: none;
+            float: left;
+            position: absolute;
+            top: 40px;
+            left:-35px;
+            z-index: 999;
+            min-width:103px;
+            color:black;
+        }
+        .sub-menu li a{
+            display: inline-block;
+            width:85%;
+            padding:0;
+            padding-left:15%;
+            margin:0 auto;
+        }
+
+        .menu li a:hover,.sub-menu a:hover{
+            background-color: rgba(0,0,0,0.4);
+            transition:background-color 1s;
+        }
+
+        .menu li:hover .sub-menu{
+            display: block;
+        }
+
+        .menu li a img{
+            vertical-align: text-bottom;
+        }
+
+
+        .navbar{
+            width:100%;
+            height:40px;
+            line-height: 40px;
+            position: fixed;
+            top:0px;
+            left:0px;
+            z-index: 999;
+        }
+
+        .container-navbar{
+            width:80%;
+            margin:0px auto;
+            background: #0f0;
+        }
+
+        .container{
+            max-width:80%;
+            margin:0px auto;
+            background: #0f0;
+        }
+
+        .navbar-left{
+            float:left;
+            display: table;
+        }
+
+        .navbar-right{
+            float:right;
+        }
+
+        .header-home{
+            width:100%;
+            height:400px;
+            background-image: url("http://7xozg6.com1.z0.glb.clouddn.com/background.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position:70% 70%;
+            display: table;
+        }
+
+        .key-icon{
+            border-radius:100px;
+        }
+
+        .key-div{
+            font-family:'MontereyFLF', Simsun, Arial;
+        }
+        .key-div a{
+            font-size:7vw;
+            color:white;
+            opacity: 0.6;
+        }
+        .main-container{
+            width:80%;
+            margin-top: 5%;
+            padding-left: 10%;
+            padding-right:10%;
+        }
+
+        .article-list-container{
+            float:left;
+            width:70%;
+        }
+
+        .article-list-container h2 a:hover{
+            color:#a6a6a5;
+            transition:color 1s;
+        }
+
+        aside{
+            width:20%;
+            margin-left:7%;
+            display: inline-block;
+        }
+
+        .date{
+            position: absolute;
+            top:-30px;
+            left:-35px;
+            background:#92c0ef;
+            border-radius:100px;
+            width:70px;
+            height:70px;
+            display: block;
+            text-align: center;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+        .month{
+            font-family: "Avenir Next",Helvetica,Arial,"Lantinghei SC","Microsoft YaHei",sans-serif;
+            font-size: 15px;
+            padding-top: 12px;
+            display: block;
+            color:white;
+            line-height: 1;
+        }
+        .day{
+            font-family: "Avenir Next",Helvetica,Arial,"Lantinghei SC","Microsoft YaHei",sans-serif;
+            display: block;
+            color:white;
+            font-size: 25px;
+            font-weight: bold;
+            line-height: 20px;
+            padding-top: 5px;
+        }
+        .container-content{
+            position: relative;
+            width:100%;
+            margin-bottom: 5%;
+            margin-right: 5%;
+            height:auto;
+            min-height:50px;
+            background: #ffffff;
+            border-radius:10px;
+            box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            padding:14px;
+        }
+
+        article{
+            width:80%;
+            margin:5% auto;
+        }
+
+        .article-header{
+            width:100%;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .article-header h2{
+            margin-top:0;
+            margin-bottom:0;
+            color:black;
+
+        }
+
+        .article-message{
+            padding:10px;
+        }
+
+        .article-message img{
+            vertical-align: -2px;
+        }
+
+        .article-label{
+            position:relative;
+            display: block;
+            left: -2rem;
+            padding:.5rem,.8rem;
+            padding-left:-2rem;
+            margin:5px 0 15px 2px;
+            line-height: 1;
+            border-radius: 5px 5px 5px 5px;
+            /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
+        }
+
+        .article-label:after {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            border-top: 0 solid transparent;
+            border-right-width: 1em;
+            border-right-color: #47456D;
+            border-right-style: solid;
+            border-bottom: 1em solid transparent;
+            border-left: 0 solid transparent;
+            width: 0;
+            height: 0;
+            content:"";
+        }
+
+        .label-rectangle{
+            background:#92c0ef;
+            display: inline-block;
+            border-radius: 0px 5px 5px 0px;
+            padding-left: 70px;
+            padding-right:10px;
+            padding-top:5px;
+            padding-bottom: 5px;
+            color:white;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+        .label-rectangle span{
+            position: relative;
+        }
+
+        .label-rectangle span:before{
+            position: absolute;
+            top:-2px;
+            left:-28px;
+            width:24px;
+            height:24px;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/shop14%20(1).png');
+            content:"";
+        }
+        .label-rectangle a{
+            color:white;
+        }
+
+        .article-content blockquote{
+            border-left: 10px solid #d6dbdf;
+            background: rgba(102, 128, 153, 0.05) none repeat scroll 0 0;
+            padding:3px 10px;
+        }
+
+        .article-content{
+            margin-left:10px;
+            margin-right:50px;
+        }
+
+        .article-content a{
+            color:#4da5ff;
+        }
+
+        .footer{
+            clear:both;
+            width:100%;
+            padding:20px;
+            background-color: #c2d6d6;
+        }
+
+        .clear{
+            clear:both;
+        }
+        .codehilite{
+            border-radius: 4px 4px 4px 4px;
+            padding:10px;
+            padding-left:15px;
+            border-left: 10px solid #d6dbdf;
+        }
+
+        .codehilite pre{
+            border-radius: 4px 4px 4px 4px;
+            background-color: #111;
+            font-family:'Microsoft YaHei','SimSun',Arial,Sans-Serif;
+            font-size: 1.1vw;
+            width:auto;
+            max-width: 100%;
+            padding:15px;
+            border:1px solid green;
+        }
+
+        .read-more{
+            text-align: center;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+        .reaad-moer span{
+            position: relative;
+        }
+
+        .read-more span a{
+            font-size: 1.2em;
+        }
+
+        .read-more span a:hover{
+            color:#007dff;
+            transition:color 0.5s;
+        }
+
+        .pager{
+            padding-bottom: 15px;
+            width:70%;
+        }
+
+        #prev-page{
+            float:left;
+            height:32px;
+            width:32px;
+        }
+        #prev-page a{
+            display: inline-block;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/left222%20(2).png');
+            opacity: 0.5;
+            height:32px;
+            width:32px;
+        }
+        #prev-page a:hover{
+            /*background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/left222%20(2).png')*/
+            opacity: 1;
+            transition:opacity 1s;
+        }
+        #next-page{
+            float:right;
+            height:32px;
+            width:32px;
+            border-radius: 1px 1px 1px 1px;
+        }
+        #next-page a{
+            display: inline-block;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/right11.png');
+            opacity: 0.5;
+            height:32px;
+            width:32px;
+        }
+        #next-page a:hover{
+            opacity: 1;
+            transition:opacity 1s;
+        }
+
+        aside{
+            height:40px;
+        }
+
+        /*联系方式*/
+        #social{
+            display: block;
+            width:80%;
+            margin:0 auto;
+            height:40px;
+            margin-top:5px;
+        }
+
+        #social span{
+            margin-right:12px;
+        }
+        #google-plus a{
+            display: table-cell;
+            width:32px;
+            height:32px;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/google110%20(2).png');
+            opacity:0.5;
+        }
+
+        #google-plus a:hover{
+            opacity: 1;
+            transition:opacity 1s;
+        }
+
+        #twitter a{
+            display: table-cell;
+            width:32px;
+            height:32px;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/twitter%20(2).png');
+            opacity: 0.5;
+        }
+
+        #twitter a:hover{
+            opacity: 1;
+            transition:opacity 1s;
+        }
+        #github a{
+            display: table-cell;
+            width:32px;
+            height:32px;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/github10%20(2).png');
+            opacity: 0.5
+        }
+        #github a:hover{
+            opacity: 1;
+            transition:opacity 1s;
+        }
+        #mail a{
+            display: table-cell;
+            width:32px;
+            height:32px;
+            background-image: url('http://7xozg6.com1.z0.glb.clouddn.com/gmail3%20(2).png');
+            opacity: 0.5;
+        }
+        #mail a:hover{
+            opacity: 1;
+            transition:opacity 1s;
+        }
+
+        /*HTTP404 Error*/
+        .error404{
+            width:60%;
+            margin:5% auto;
+        }
+
+        /*tags*/
+        .tags{
+            display: inline-block;
+            margin:0;
+            padding:0;
+            margin-right:5px;
+            margin-top:5px;
+            margin-bottom: 5px;
+            padding-left:25px;
+            padding-right:15px;
+        }
+
+        aside .label-rectangle{
+            background-color: #4da6ff;
+        }
+
+        aside .label-rectangle:hover{
+            background-color: #92c0ef;
+            transition:background-color 1s;
+        }
+
+        aside .label-rectangle{
+            border-radius: 5px 5px 5px 5px;
+        }
+
+    </style>
+</head>
+
 <body>
-    {% include 'navbar.html' %}
-    {% include 'header.html'%}
-    {% include 'article-list.html' %}
-    {% include 'footer.html' %}
+
+    {% block navbar %}
+        <div class="navbar">
+        <div class="container-navbar">
+            <nav class="navbar-left">
+            <ul class="menu">
+                <li>
+                    <a href="../../"><img src="http://7xozg6.com1.z0.glb.clouddn.com/home.png"> Keysona</a>
+                </li>
+                <li>
+                    <a href="/tags/project"><img src="http://7xozg6.com1.z0.glb.clouddn.com/project.png"/> Projects</a>
+                    <ul class="sub-menu" style="">
+                        <li>
+                            <a href="#">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/tag.png"/> Link 1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/tag.png"/> Link 2
+                            </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/tag.png"/> Link 3
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/tags/python">
+                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/python.png"> Python
+                    </a>
+                </li>
+                <li>
+                    <a href="/tags/ubuntu">
+                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/ubuntu.png"> Ubuntu
+                    </a>
+                </li>
+                <li>
+                    <a href="/tags/algorithm">
+                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/algorithm.png"> Algorightm
+                    </a>
+                </li>
+                <li>
+                    <a href="/tags">
+                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/tags.png"/> Tags
+                    </a>
+                    <ul class="sub-menu" style="">
+                        <li>
+                            <a href="#">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/tag.png"/> Link 1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/tag.png"/> Link 2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/tag.png"/> Link 3
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            </nav>
+            <nav class="navbar-right">
+            <ul class="menu">
+                <li>
+                    <a href="/message"><img src="http://7xozg6.com1.z0.glb.clouddn.com/message.png"> Message</a>
+                </li>
+                <li>
+                    <a href="/about"><img src="http://7xozg6.com1.z0.glb.clouddn.com/me.png"> About</a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+        </div>
+    {% endblock %}
+
+    {% block header %}
+        <header class="header-home">
+            <center style="margin-top:60px;">
+                <div class="key-div"><a href="#">Keysona</a></div>
+                <img class="key-icon" src="http://7xozg6.com1.z0.glb.clouddn.com/alice.jpg"/ width="100px" height="100px"/>
+            </center>
+        </header>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    {% block aside %}
+        <aside style="width:220px;height:40px;">
+            <div class="container-content">
+                <div id="social">
+                    <span id="google-plus"><a href="https://github.com/keysona" title="google plus"></a></span>
+                    <span id="twitter"><a href="https://twitter.com/RumenRider" title="twitter"></a></span>
+                    <span id="github"><a href="https://github.com/keysona" title="github"></a></span>
+                    <span id="mail"><a href="mailto:keypython@gmail.com"></a></span>
+                </div>
+            </div>
+            <div class="container-content">
+                {% for tag in tags.all %}
+                    <!-- <div class="article-label"> -->
+                    {% if tag.article_set.all.count > 0 %}
+                        <div class="label-rectangle tags">
+                            <a href="/tags/{{tag}}" title="{{tag}}">
+                                <span>
+                                    {{tag}} ({{tag.article_set.all.count}})
+                                </span>
+                            </a>
+                        </div>
+                    <!-- </div> -->
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </aside>
+        <div class="clear"></div>
+    {% endblock %}
+    {% block pager %}
+        {% if objects.object_list and objects.paginator.num_pages > 1 %}
+            <div class="pager">
+                {% if objects.has_previous %}
+                    <span id="prev-page"><a href="?page={{objects.previous_page_number}}"></a></span>
+                {% endif %}
+                {% if objects.has_next %}
+                    <span id="next-page"><a href="?page={{objects.next_page_number}}"></a></span>
+                {% endif %}
+                <div class="clear"></div>
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block footer %}
+        <footer class="footer">
+            <center>
+                <p>Django驱动</p>
+                <p>&copy;Made by Keysona</p>
+                <p>2015年12月</p>
+            </center>
+        </footer>
+    {% endblock %}
 </body>
 </html>

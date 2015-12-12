@@ -1,35 +1,35 @@
-{% include 'head.html' %}
-<body>
-    {% include 'navbar.html' %}
-    {% include 'header.html'%}
-    {% load myfilter %}
-    <div class="main-container">
-        <div class="article">
-            <span class="date">
-                <span class="month">{{article.pub_datetime.month}}月</span>
-                <span class="day">{{article.pub_datetime.day}}</span>
-            </span>
-                <div class="article-header">
-                        <h2><a href="/blog/article/{{article.title}}">{{ article.title }}</a></h2>
-                    <div class="article-message">
-                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/time.png"> 发表于 {{article.pub_datetime | custom_date}}•
-                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/eye.png">
-                         {{article.hit_count}}次观看•
-                        <img src="http://7xozg6.com1.z0.glb.clouddn.com/chat.png" > 11条评论
-                    </div>
-                </div>
-                {% for tag in tags %}
-                <div class="article-label">
-                    <div class="label-rectangle" style="text-align: right;">
-                        <span>
-                            {{tag}}
-                        </span>
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="article-content">
-                    {{article.content | custom_markdown }}
-                </div>
+{% extends "base.html" %}
+{% load myfilter %}
+{% block title %} {{objects.title}} | Keysona Blog {% endblock %}
+{% block content %}
+<article>
+    <div class="container-content">
+    <span class="date">
+        <span class="month">{{objects.pub_datetime.month}}月</span>
+         <span class="day">{{objects.pub_datetime.day}}</span>
+    </span>
+        <div class="article-header">
+                <h2><a href="/article/{{objects.title}}">{{ objects.title }}</a></h2>
+            <div class="article-message">
+                <img src="http://7xozg6.com1.z0.glb.clouddn.com/time.png"> 发表于 {{objects.pub_datetime | custom_date}}•
+                <img src="http://7xozg6.com1.z0.glb.clouddn.com/eye.png">
+                    {{objects.hit_count}}次观看•
+                <img src="http://7xozg6.com1.z0.glb.clouddn.com/chat.png" > 11条评论
+            </div>
+        </div>
+        {% for tag in objects.tags.all %}
+        <div class="article-label">
+            <div class="label-rectangle" style="text-align: right;">
+                <a href="/tags/{{tag}}"><span>
+                    {{tag}}
+                </span>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="article-content">
+            {{objects.content | custom_markdown }}
         </div>
     </div>
-{% include 'footer.html' %}
+</article>
+{% endblock %}

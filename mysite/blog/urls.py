@@ -3,7 +3,7 @@
 # @Author: key
 # @Date:   2015-12-07 22:20:13
 # @Last Modified by:   key
-# @Last Modified time: 2015-12-09 20:01:38
+# @Last Modified time: 2015-12-11 21:37:43
 """mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -20,14 +20,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
-from blog.views import index,article,tags
+from django.contrib import admin
+from blog.views import get_args
 from django.conf.urls.static import static
+from blog.models import Article,Tag
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/key/project/mysite/static'
+home = {
+    'template_name':'home.html',
+}
+
+article = {
+    'template_name':'article.html',
+}
+
+tag = {
+    'template_name':'home.html',
+}
 
 urlpatterns = [
-    url(r'^$',index),
-    url(r'^article/(.+)',article),
-    url(r'^tags/(.+)',tags),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$',get_args,home),
+    url(r'^article/$',get_args,home),
+    url(r'^article/(?P<title>.+)/',get_args,article),
+    # url(r'^tags/$',),
+    url(r'^tags/(?P<tag>.+)/',get_args,tag),
 ]

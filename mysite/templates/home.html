@@ -1,0 +1,49 @@
+{% extends 'article.html' %}
+{% load myfilter %}
+{% block title %} Keysona Blog | 爱折腾•爱技术 {% endblock %}
+{% block content %}
+<div class="main-container">
+        <div class="article-list-container">
+            {% for object in objects %}
+                <div class="container-content">
+                    <span class="date">
+                        <span class="month">{{object.pub_datetime.month}}月</span>
+                        <span class="day">{{object.pub_datetime.day}}</span>
+                    </span>
+                        <div class="article-header">
+                                <h2><a href="/article/{{object.title}}">{{ object.title }}</a></h2>
+                            <div class="article-message">
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/time.png"> 发表于 {{object.pub_datetime | custom_date}}•
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/eye.png">
+                                 {{object.hit_count}}次观看•
+                                <img src="http://7xozg6.com1.z0.glb.clouddn.com/chat.png" > 11条评论
+                            </div>
+                        </div>
+                        {% for tag in object.tags.all %}
+                        <div class="article-label">
+                            <div class="label-rectangle" style="text-align: right;">
+                                <a href="/tags/{{tag}}"><span>
+                                    {{tag}}
+                                </span>
+                                </a>
+                            </div>
+                            <!-- <br /> -->
+                        </div>
+                        {% endfor %}
+                        <div class="article-content">
+                            <p>
+                                <!-- {{ article.content | custom_markdown | cut:"50" }} -->
+                                {{ object.content | custom_markdown | truncatewords_html:100 }}
+
+                            </p>
+                            <div class="read-more">
+                                <span><a href="/article/{{object.title}}/">阅读全文 >> </a></span>
+                            </div>
+                        </div>
+                </div>
+            {% endfor %}
+        </div>
+</div>
+
+{% endblock %}
+

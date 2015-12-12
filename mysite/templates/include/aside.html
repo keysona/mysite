@@ -1,0 +1,25 @@
+<aside style="width:220px;height:40px;">
+    <div class="container-content">
+        <div id="social">
+            <span id="google-plus"><a href="https://github.com/keysona" title="google plus"></a></span>
+            <span id="twitter"><a href="https://twitter.com/RumenRider" title="twitter"></a></span>
+            <span id="github"><a href="https://github.com/keysona" title="github"></a></span>
+            <span id="mail"><a href="mailto:keypython@gmail.com"></a></span>
+        </div>
+    </div>
+    <div class="container-content">
+        {% for tag in tags.all %}
+            <!-- <div class="article-label"> -->
+            {% if tag.article_set.all.count > 0 %}
+                <div class="label-rectangle tags">
+                    <a href="/tags/{{tag}}" title="{{tag}}">
+                        <span>
+                            {{tag}} ({{tag.article_set.all.count}})
+                        </span>
+                    </a>
+                </div>
+            <!-- </div> -->
+            {% endif %}
+        {% endfor %}
+    </div>
+</aside>

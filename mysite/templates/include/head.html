@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Keysona Blog</title>
+    <meta name="viewport" content="width=700, height=device-height, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" itemprop="description" content="欢迎来到我的博客！我是Keysona，一名喜欢折腾技术，热爱自由的在校大学生">
+    <meta name="keywords" itemprop="keywords" content="Keysona,博客,blog,python,opencv,ubuntu">
+
+    <title>{% block title %}{% endblock %} </title>
+
     <link rel="stylesheet" type="text/css" href="http://7xozg6.com1.z0.glb.clouddn.com/code_highlightfruity.css">
     <!-- <link rel="stylesheet" type="text/css" href="http://7xozg6.com1.z0.glb.clouddn.com/code_highlightmonokai.css"> -->
     <style type="text/css">
@@ -18,12 +21,10 @@
             background:#e2e2e2;
             font-family:"Microsoft YaHei",sans-serif;
         }
-
         a{
             text-decoration: none;
             color:black;
             outline:none;
-            blr:expression(this.onFocus=this.blur());
         }
         .menu{
             display: table;
@@ -36,18 +37,15 @@
             display: table-cell;
             border:0px none;
         }
-
         .menu li li{
             display: block;
             height:auto;
         }
-
         .menu li a{
             color:white;
             text-decoration: none;
             padding:12px 12px;
         }
-
         .sub-menu{
             height:auto;
             display: none;
@@ -59,7 +57,6 @@
             min-width:103px;
             color:black;
         }
-
         .sub-menu li a{
             display: inline-block;
             width:85%;
@@ -92,8 +89,10 @@
             z-index: 999;
         }
 
-        .navbar .container{
+        .container-navbar{
             width:80%;
+            margin:0px auto;
+            background: #0f0;
         }
 
         .container{
@@ -121,10 +120,6 @@
             display: table;
         }
 
-        .content{
-            display:table-cell;
-            vertical-align:middle;
-        }
         .key-icon{
             border-radius:100px;
         }
@@ -147,6 +142,11 @@
         .article-list-container{
             float:left;
             width:70%;
+        }
+
+        .article-list-container h2 a:hover{
+            color:#a6a6a5;
+            transition:color 1s;
         }
 
         aside{
@@ -184,16 +184,22 @@
             line-height: 20px;
             padding-top: 5px;
         }
-        .article{
+        .container-content{
             position: relative;
             width:100%;
             margin-bottom: 5%;
             margin-right: 5%;
-            height:600            height: 0;px;
+            height:auto;
+            min-height:50px;
             background: #ffffff;
             border-radius:10px;
             box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
             padding:14px;
+        }
+
+        article{
+            width:80%;
+            margin:5% auto;
         }
 
         .article-header{
@@ -255,7 +261,6 @@
             color:white;
             box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
         }
-
         .label-rectangle span{
             position: relative;
         }
@@ -272,6 +277,22 @@
         .label-rectangle a{
             color:white;
         }
+
+        .article-content blockquote{
+            border-left: 10px solid #d6dbdf;
+            background: rgba(102, 128, 153, 0.05) none repeat scroll 0 0;
+            padding:3px 10px;
+        }
+
+        .article-content{
+            margin-left:10px;
+            margin-right:50px;
+        }
+
+        .article-content a{
+            color:#4da5ff;
+        }
+
         .footer{
             clear:both;
             width:100%;
@@ -293,24 +314,9 @@
             border-radius: 4px 4px 4px 4px;
             background-color: #111;
             font-family:'Microsoft YaHei','SimSun',Arial,Sans-Serif;
-            font-size: 1.2vw;
+            font-size: 1px;
             padding:15px;
             border:1px solid green;
-        }
-
-        .article-content blockquote{
-            border-left: 10px solid #d6dbdf;
-            background: rgba(102, 128, 153, 0.05) none repeat scroll 0 0;
-            padding:3px 10px;
-        }
-
-        .article-content{
-            margin-left:10px;
-            margin-right:50px;
-        }
-
-        .article-content a{
-            color:#4da5ff;
         }
 
         .read-more{
@@ -329,11 +335,6 @@
         .read-more span a:hover{
             color:#007dff;
             transition:color 0.5s;
-        }
-
-        .article-list-container h2 a:hover{
-            color:#a6a6a5;
-            transition:color 1s;
         }
 
         .pager{
@@ -376,16 +377,17 @@
             transition:opacity 1s;
         }
 
-        aside .article{
-            /*height:300px;*/
+        aside{
+            height:40px;
         }
 
+        /*联系方式*/
         #social{
             display: block;
             width:80%;
             margin:0 auto;
             height:40px;
-            margin:0 auto;
+            margin-top:5px;
         }
 
         #social span{
@@ -438,5 +440,37 @@
             opacity: 1;
             transition:opacity 1s;
         }
+
+        /*HTTP404 Error*/
+        .error404{
+            width:60%;
+            margin:5% auto;
+        }
+
+        /*tags*/
+        .tags{
+            display: inline-block;
+            margin:0;
+            padding:0;
+            margin-right:5px;
+            margin-top:5px;
+            margin-bottom: 5px;
+            padding-left:25px;
+            padding-right:15px;
+        }
+
+        aside .label-rectangle{
+            background-color: #66b2ff;
+        }
+
+        aside .label-rectangle:hover{
+            background-color: #92c0ef;
+            transition:background-color 1s;
+        }
+
+        aside .label-rectangle{
+            border-radius: 5px 5px 5px 5px;
+        }
+
     </style>
 </head>

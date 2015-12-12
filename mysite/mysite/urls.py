@@ -3,7 +3,7 @@
 # @Author: key
 # @Date:   2015-12-07 22:20:09
 # @Last Modified by:   key
-# @Last Modified time: 2015-12-08 20:14:18
+# @Last Modified time: 2015-12-11 14:20:24
 """mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -21,12 +21,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from blog.views import index
-from blog import urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',index,name='home'),
-    url(r'^blog/',include(urls))
 ]
 
